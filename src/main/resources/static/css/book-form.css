@@ -1,0 +1,65 @@
+.doctor-cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.doctor-card {
+    border: 1px solid #ccc;
+    padding: 15px;
+    margin: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: #f9f9f9;
+    width: calc(30% - 20px); /* Adjust width for three cards in a row */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.doctor-card:hover {
+    background-color: #e3f2fd;
+}
+
+button {
+    margin-top: 10px;
+}
+
+.slots {
+    margin-top: 10px;
+}
+
+.slot {
+    display: inline-block;
+    padding: 8px 12px;
+    margin: 5px;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+}
+
+.available {
+    background-color: green;
+}
+
+.unavailable {
+    background-color: red;
+    cursor: not-allowed;
+}
+
+.selected {
+    border: 2px solid black;
+}
+
+#slot-container {
+    margin-top: 20px;
+}
+
+@media (max-width: 600px) {
+    .doctor-card {
+        width: 100%; /* Full width on small screens */
+    }
+    .slot {
+        display: block;
+        width: 100%;
+        text-align: center;
+    }
+}

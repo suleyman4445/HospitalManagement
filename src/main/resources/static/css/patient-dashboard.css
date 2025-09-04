@@ -1,0 +1,261 @@
+/* Base */
+:root{
+  --bg:#f6f8fa;
+  --card:#ffffff;
+  --muted:#6b7280;
+  --primary:#2563eb;
+  --accent:#06b6d4;
+  --danger:#ef4444;
+  --shadow: 0 10px 30px rgba(2,6,23,0.08);
+  --radius:12px;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin:0;
+  font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background: linear-gradient(180deg, var(--bg), #eef2f6 60%);
+  color: #111827;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* NAVBAR */
+.navbar {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+  padding:12px 20px;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid #a0a3a8;
+  position:sticky;
+  top:0;
+  z-index: 40;
+}
+
+.brand { display:flex; align-items:center; gap:12px; }
+.logo {
+    font-size: 20px;
+    font-weight: bold;
+    color: #007bff;
+}
+.hamburger {
+  display:none;
+  background:transparent;
+  border:0;
+  font-size:18px;
+  cursor:pointer;
+}
+.nav-links { display:flex; gap:10px; align-items:center; margin-left:auto; }
+.nav-item {
+  display:inline-flex;
+  gap:8px;
+  padding:8px 12px;
+  border-radius:10px;
+  text-decoration:none;
+  color:#111827;
+  font-weight:600;
+  font-size:14px;
+  cursor: pointer;  
+}
+
+.nav-item:hover {
+  color: #2C6965;
+}
+
+.nav-item.logout {
+  background: linear-gradient(to right, #ff416c, #ff4b2b);
+  padding: 8px 16px;
+  border-radius: 6px;
+  color: white !important;
+}
+
+.nav-item.logout:hover {
+  background: linear-gradient(to right, #c5274c, #c83b22);
+}
+
+/* Wrapper */
+.dashboard-wrapper {
+  max-width:1100px;
+  margin:28px auto;
+  padding:20px;
+}
+
+/* Welcome */
+.welcome {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:20px;
+  margin-bottom:18px;
+}
+.welcome h1 { margin:0; font-size:24px; }
+.muted { color:var(--muted); margin:6px 0 0; }
+
+/* Quick actions square buttons */
+.quick-actions { display:flex; gap:12px; align-items:center; }
+.square-btn {
+  width:110px;
+  height:110px;
+  border-radius:14px;
+  background: linear-gradient(180deg,#fff,#f7fbff);
+  border: 1px solid #e6eefc;
+  box-shadow: 0 6px 18px rgba(37,99,235,0.06);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
+  cursor:pointer;
+  transition: transform .18s ease, box-shadow .18s ease;
+  font-weight:700;
+}
+.square-btn i { color:var(--primary); }
+.square-btn:hover { transform: translateY(-6px) scale(1.02); box-shadow: 0 14px 30px rgba(37,99,235,0.08); }
+
+/* Cards grid */
+.cards-grid {
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap:16px;
+  margin:10px 0 22px;
+}
+.card {
+  display:flex;
+  gap:14px;
+  align-items:center;
+  background:var(--card);
+  border-radius:var(--radius);
+  padding:18px;
+  text-decoration:none;
+  color:inherit;
+  box-shadow: var(--shadow);
+  transition: transform .18s ease, box-shadow .18s ease;
+  border: 1px solid rgba(15,23,42,0.03);
+}
+.card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(2,6,23,0.08); }
+.large-card { grid-column: span 2; display:flex; align-items:center; justify-content:flex-start; }
+.card-icon {
+  width:64px; height:64px; border-radius:12px;
+  display:flex; align-items:center; justify-content:center;
+  background: linear-gradient(135deg, rgba(37,99,235,0.08), rgba(6,182,212,0.06));
+  font-size:26px; color:var(--primary);
+  flex-shrink:0;
+}
+.card-body h3, .card-body h4 { margin:0 0 6px; }
+.card-body p { margin:0; color:var(--muted); font-size:13px; }
+
+/* Notifications / messages */
+.notifications { position:relative; }
+.notifications::after {
+  content: attr(data-badge);
+  position:absolute;
+  right:12px; top:10px;
+  background:var(--danger);
+  color:white;
+  padding:4px 8px;
+  border-radius:999px;
+  font-size:12px;
+  display: none;
+}
+.notifications[data-badge]:not([data-badge="0"])::after { display:inline-block; }
+
+/* Appointment panel */
+.panel {
+    background: #fff;
+    border-radius: 10px;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+    overflow: hidden;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.panel-toggle {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 14px 18px;
+    background: #ffffff;
+    border: none;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.panel-toggle .title {
+    color: #111827;
+}
+
+.panel-toggle .patient-info {
+    color: #6f6f6f;
+    font-weight: normal;
+    font-size: 14px;
+    
+}
+
+.panel-toggle .arrow {
+    font-size: 12px;
+    margin-left: auto;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.panel-toggle[aria-expanded="true"] .arrow {
+    transform: rotate(180deg);
+}
+
+.panel-content {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease, opacity 0.3s ease;
+}
+
+.panel-content.open {
+    padding: 16px 18px;
+    max-height: 500px;
+    opacity: 1;
+}
+
+
+.appointment-card p {
+    margin: 6px 0;
+    color: #374151;
+}
+
+.btn {
+    display: inline-block;
+    background: #2563EB; 
+    color:white; 
+    padding:8px 14px; 
+    border-radius:8px; 
+    text-decoration:none; 
+    /* margin-top:20px; */
+    font-weight:700; 
+    cursor: pointer;}
+.btn:hover {
+    background: #2158ce
+}
+/* Toast */
+.toast {
+  position:fixed; right:20px; bottom:20px; background:#111827; color:white; padding:12px 16px; border-radius:10px; transform:translateY(20px); opacity:0; transition: all .32s ease; z-index:60;
+}
+
+/* Responsive */
+@media (max-width: 980px) {
+  .cards-grid { grid-template-columns: repeat(2, 1fr); }
+  .large-card { grid-column: auto; }
+  .nav-links { gap:6px; }
+  .quick-actions { gap:8px; }
+}
+@media (max-width: 680px) {
+  .hamburger { display:inline-block; }
+  .nav-links { display:none; position:fixed; right:10px; top:60px; background:white; box-shadow: var(--shadow); flex-direction:column; padding:12px; border-radius:10px; }
+  .nav-links.show { display:flex; }
+  .cards-grid { grid-template-columns: 1fr; }
+  .welcome { flex-direction:column; align-items:flex-start; gap:12px; }
+  .square-btn { width:86px; height:86px; font-size:13px; }
+}

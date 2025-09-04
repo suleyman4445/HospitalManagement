@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+	<head>
+		<title>book-appointment</title>
+	</head>
+	<body>
+		<h2>Book Appointment</h2>
+		<form th:action="@{/appointment/book}" th:object="${form}" method="post">
+			<input type="hidden" th:field="*{doctorId}" />
+			<input type="hidden" th:field="*{date}" />
+			
+			<label>Select Time Slot</label>
+			<select th:field="*{time}" required>
+				<option  th:each="slot : ${slots}" th:value="${slot}" th:text="${slot}"></option>
+			</select>
+			
+			<br/><button type="submit">Book Now</button>
+		</form>
+	</body>
+</html>

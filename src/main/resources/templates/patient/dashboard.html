@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Patient Dashboard</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" th:href="@{/css/patient-dashboard.css}" href="/static/css/patient-dashboard.css">
+
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+        integrity="sha512-Fo3rlrZj/k7ujTTXRMfpN6JYv8d1+1Q3+fKzYqR+f6pZ9fj9yOQXtQ+Kx+0zT2BZvXylK9VmFQcZc5QJ2fJrRA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- JS (deferred) -->
+    <script defer th:src="@{/js/patient-dashboard.js}" src="/static/js/patient-dashboard.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <!-- NAVBAR -->
+    <header class="navbar">
+        <div class="brand">
+            <div class="logo">🩺 <span>HealthCare+</span></div>
+        </div>
+
+        <nav class="nav-links" role="navigation" aria-label="Main navigation">
+            <a th:href="@{/appointment/book}" class="nav-item">Book</a>
+            <a th:href="@{/patient/appointments}" class="nav-item">Appointments</a>
+            <a th:href="@{/patient/prescriptions}" class="nav-item">Prescriptions</a>
+            <a th:href="@{/patient/lab-reports}" class="nav-item">Lab Reports</a>
+            <a th:href="@{/patient/profile}" class="nav-item">Profile</a>
+            <a th:href="@{/logout}" class="nav-item logout">Logout</a>
+        </nav>
+    </header>
+
+    <!-- MAIN -->
+    <main class="dashboard-wrapper">
+        <section class="welcome">
+            <div>
+                <h1 th:text="'Welcome, ' + ${patient.name} + '!'">Welcome, [Name]!</h1>
+                <p class="muted">Here's what's happening with your care — quick actions and recent items at a glance.</p>
+            </div>
+
+            <div class="quick-actions">
+                <button class="square-btn" th:onclick="|location.href='@{/appointment/book}'|">
+                    <span>Book</span>
+                </button>
+
+                <button class="square-btn" th:onclick="|location.href='@{/patient/appointments}'|">
+                    <span>Appointments</span>
+                </button>
+
+                <button class="square-btn" id="reminderBtn">
+                    <span>Remind Me</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- CARDS GRID -->
+        <section class="cards-grid" aria-label="Primary actions">
+            <a class="card large-card" th:href="@{/appointment/book}">
+                <div class="card-body">
+                    <h3>Book Appointment</h3>
+                    <p>Find specialists, choose slots — quick booking.</p>
+                </div>
+            </a>
+
+            <a class="card" th:href="@{/patient/appointments}">
+                <div class="card-body">
+                    <h4>My Appointments</h4>
+                    <p>Upcoming & past visits</p>
+                </div>
+            </a>
+
+            <a class="card" th:href="@{/patient/prescriptions}">
+                <div class="card-body">
+                    <h4>Prescriptions</h4>
+                    <p>Download or share</p>
+                </div>
+            </a>
+
+            <a class="card" th:href="@{/patient/lab-reports}">
+                <div class="card-body">
+                    <h4>Lab Reports</h4>
+                    <p>View test results</p>
+                </div>
+            </a>
+
+            <a class="card" th:href="@{/patient/profile}">
+                <div class="card-body">
+                    <h4>Profile</h4>
+                    <p>Update contact & emergency info</p>
+                </div>
+            </a>
+
+            <div class="card notifications" id="messagesCard">
+                <div class="card-body">
+                    <h4>Messages</h4>
+                    <p th:text="${unreadMessagesCount != null ? unreadMessagesCount + ' unread' : 'No new messages'}">2 unread</p>
+                </div>
+            </div>
+
+            <a class="card" th:href="@{/logout}">
+                <div class="card-body">
+                    <h4>Logout</h4>
+                    <p>Sign out from dashboard</p>
+                </div>
+            </a>
+
+        </section>
+
+        <!-- UPCOMING APPOINTMENT PANEL (collapsible) -->
+        <section th:if="${nextAppointment != null}" class="panel">
+            <!-- Header Row -->
+            <button class="panel-toggle" aria-expanded="false">
+                <span class="title">Upcoming Appointment</span>
+                <span class="patient-info">
+                    <strong>Doctor:</strong> <span th:text="${nextAppointment.doctor.name != null ?
+						nextAppointment.doctor.name : 'Unknown'}">Dr. Sharma</span>
+                    <strong>Date:</strong> <span th:text="${nextAppointment.appointmentDate != null ? 
+						nextAppointment.appointmentDate : 'Unknown'}">2025-08-04</span>
+                </span>
+                <span class="arrow">▼</span>
+            </button>
+
+            <!-- Dropdown content -->
+            <div class="panel-content">
+                <div th:if="${nextAppointment != null}" class="appointment-card">
+                    <p><strong>Doctor:</strong> <span th:text="${nextAppointment.doctor.name != null ?
+						nextAppointment.doctor.name : 'Unknown'}">Dr. Sharma</span></p>
+                    <p><strong>Date:</strong> <span th:text="${nextAppointment.appointmentDate != null ? 
+						nextAppointment.appointmentDate : 'Unknown'}">2025-08-04</span></p>
+                    <p><strong>Time:</strong> <span th:text="${nextAppointment.appointmentTime != null ? 
+						nextAppointment.appointmentTime : 'Unknown'}">10:30 AM</span></p>
+                    <p><strong>Status:</strong> <span th:text="${nextAppointment.status != null ? 
+						nextAppointment.status : 'Unknown'}">Confirmed</span></p>
+                    <div class="appointment-actions">
+                        <a th:href="@{/doctor/appointments}" class="btn">View All</a>
+                        <a th:href="@{/appointment/reschedule/{id}(id=${nextAppointment.id})}" class="btn">Reschedule</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- small toast/notification placeholder -->
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+</body>
+</html>

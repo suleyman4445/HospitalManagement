@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+	<head>
+		<title>add-availability</title>
+	</head>
+	<body>
+		<h2>Update Availability</h2>
+		<form th:action="@{/doctor/addAvailability}" th:object="${availabilityDTO}" method="post">
+			<label>Day Of Week</label>
+			<select th:field="*{day}" required>
+				<option th:each="d : ${T(java.time.DayOfWeek).values()}" th:value="${d}" th:text="${d}">
+					Day
+				</option>
+			</select><br/>
+			
+			<label>Start Time:</label>
+			<input type="time" th:field="*{startTime}" required/><br/>
+			
+			<label>End Time:</label>
+			<input type="time" th:field="*{endTime}" required/><br/>
+			
+			<button type="submit">Save</button>
+		</form>
+	</body>
+</html>

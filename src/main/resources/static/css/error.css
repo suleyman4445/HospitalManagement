@@ -1,0 +1,63 @@
+html, body {
+	    margin: 0;
+	    padding: 0;
+	    height: 100%;
+	    font-family: Arial, sans-serif;
+    }
+
+    body {
+	    background-image: url('/images/error.png'); 
+	    background-repeat: no-repeat;
+	    background-position: right bottom; 
+	    background-size: contain; 
+	    display: flex;
+	    align-items: center;
+    }
+
+    .content {
+	    padding: 60px 100px 60px 60px; 
+	    max-width: 50%;
+	    color: #2C6965;
+    }
+
+    h1 {
+	    font-size: 2.5em;
+	    margin-bottom: 10px;
+    }
+
+    p {
+    	font-size: 1.2em;
+    }
+
+	.home-btn {
+		display: inline-block;
+		padding: 10px 20px;
+		background-color: #2C6965;
+		color: #ffffff;
+		border-radius: 7px;
+		text-decoration: none;
+		border: none;
+		font-size: 15px;
+		cursor: pointer;
+		transition: background-color 0.3s ease;
+	}
+
+	.home-btn:hover {
+		background-color: #1a514d;
+	}
+
+    @media (max-width: 768px) {
+    body {
+	        background-position: center bottom;
+	        background-size: 80%;
+	        flex-direction: column;
+	        justify-content: flex-start;
+	        text-align: center;
+    }
+
+    .content {
+        max-width: 100%;
+        padding: 40px;
+        color: #2C6965;
+    }
+    }

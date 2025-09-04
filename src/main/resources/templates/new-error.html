@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>404 Error</title>
+    <style>
+        html, body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        font-family: Arial, sans-serif;
+        }
+
+        body {
+        background-image: url('/static/images/error.png'); 
+        background-repeat: no-repeat;
+        background-position: right bottom; 
+        background-size: contain; 
+        display: flex;
+        align-items: center;
+        }
+
+        .content {
+        padding: 60px 100px 60px 60px; 
+        max-width: 50%;
+        color: #2C6965;
+        }
+
+        h1 {
+        font-size: 2.5em;
+        margin-bottom: 10px;
+        }
+
+        p {
+        font-size: 1.2em;
+        }
+
+        @media (max-width: 768px) {
+        body {
+            background-position: center bottom;
+            background-size: 80%;
+            flex-direction: column;
+            justify-content: flex-start;
+            text-align: center;
+        }
+
+        .content {
+            max-width: 100%;
+            padding: 40px;
+            color: #2C6965;
+        }
+        }
+    </style>
+    </head>
+    <body>
+    <div class="content">
+        <h1>Oops! Something went wrong</h1>
+        <p>Please go back and fix your error</p>
+    </div>
+</body>
+</html>

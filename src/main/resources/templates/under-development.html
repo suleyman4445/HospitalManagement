@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8" />
+		<title>Page-under-development</title>
+		<link rel="stylesheet" th:href="@{/css/under-development.css}" />
+	</head>
+	<body>
+	    <div class="container">
+	        <div class="image-container">
+	            <img src="/images/under-development.jpg" alt="Under Development">
+	        </div>
+	        <div class="text-container">
+	            <h1>Website Under Development</h1>
+	            <p>We're currently working hard to bring you this page. Please check back later or explore the rest of our site.</p>
+	            <!-- <a th:href="@{/}" class="btn">Back to Dashboard</a> -->
+				<a th:if="${session.loggedInUser.role == 'PATIENT'}" th:href="@{/patient/dashboard}" class="btn">Go Back</a>
+				<a th:if="${session.loggedInUser.role == 'DOCTOR'}" th:href="@{/doctor/dashboard}" class="btn">Go Back</a>
+				<a th:if="${session.loggedInUser.role == 'ADMIN'}" th:href="@{/admin/dashboard}" class="btn">Go Back</a>
+				<a th:if="${session.loggedInUser.role == null}" th:href="@{/index}" class="btn">Go Home</a>
+	        </div>
+	    </div>
+	</body>
+</html>

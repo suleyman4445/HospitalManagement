@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+	<head>
+	    <meta charset="UTF-8">
+	    <title>404 Error</title>
+		<link rel="stylesheet" th:href="@{/css/error.css}">
+    </head>
+    <body>
+	    <div class="content">
+	        <h1>Oops! Something went wrong</h1>
+	        <p>Please go back and fix your error</p>
+			<a th:if="${session.loggedInUser?.role == 'PATIENT'}" th:href="@{/patient/dashboard}" class="home-btn">Go Back</a>
+		    <a th:if="${session.loggedInUser?.role == 'DOCTOR'}" th:href="@{/doctor/dashboard}" class="home-btn">Go Back</a>
+		    <a th:if="${session.loggedInUser?.role == 'ADMIN'}" th:href="@{/admin/dashboard}" class="home-btn">Go Back</a>
+		    <a th:if="${session.loggedInUser.role == null}" th:href="@{/index}" class="home-btn">Go Home</a>
+	    </div>
+	</body>
+</html>

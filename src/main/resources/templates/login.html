@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - MediCore</title>
+    <link rel="stylesheet" th:href="@{/css/login.css}">
+</head>
+<body>
+    <div class="login-container">
+        <h2>Login to Your Account</h2>
+
+        <form th:action="@{/login}" th:object="${user}" method="post" class="login-form">
+            <input type="email" th:field="*{email}" placeholder="Enter your email" required>
+            <input type="password" th:field="*{password}" placeholder="Enter your password" required>
+            <button type="submit">Login</button>
+        </form>
+
+        <p class="error-message" th:if="${error}" th:text="${error}"></p>
+
+        <p class="footer-link">Don't have an account? 
+            <a th:href="@{/register}">Register</a>
+        </p>
+    </div>
+</body>
+</html>

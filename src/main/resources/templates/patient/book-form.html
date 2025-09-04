@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Book Appointment</title>
+</head>
+<body>
+
+<h1>Book Appointment</h1>
+
+<!-- Step 1: Select doctor and date -->
+<form th:action="@{/appointment/book}" method="post" th:object="${form}">
+
+    <label for="doctor">Select Doctor:</label>
+    <select th:field="*{doctorId}" required>
+        <option value="" disabled selected>Select</option>
+        <option th:each="doc : ${doctors}" th:value="${doc.id}" 
+                th:text="${doc.name}">
+        </option>
+    </select>
+    <br><br>
+
+    <label for="date">Select Date:</label>
+    <input type="date" th:field="*{date}" required />
+    <br><br>
+
+    <button type="submit">Check Slots</button>
+</form>
+
+<!-- Step 2: Show available slots (if available) -->
+<div th:if="${showSlots}">
+    <form th:action="@{/appointment/confirm}" method="post" th:object="${form}">
+        <input type="hidden" th:field="*{doctorId}" />
+        <input type="hidden" th:field="*{date}" />
+
+        <label>Select Slot:</label>
+        <select th:field="*{time}" required>
+            <option value="" disabled selected>Select a time</option>
+            <option th:each="slot : ${slots}" th:value="${slot}" th:text="${slot}"></option>
+        </select>
+        <br><br>
+
+        <button type="submit">Confirm Appointment</button>
+    </form>
+</div>
+
+<!-- Show error if no slots -->
+<div th:if="${error}">
+    <p th:text="${error}" style="color:red;"></p>
+</div>
+
+</body>
+</html>

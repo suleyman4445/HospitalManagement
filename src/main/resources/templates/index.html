@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MediCore - Hospital Management System</title>
+    <link rel="stylesheet" th:href="@{/css/landing.css}" />
+    <script th:src="@{/js/landing.js}" defer></script>
+</head>
+
+<body>
+    <!-- Navigation Bar with Brand and Login/Register Buttons -->
+    <header class="navbar">
+        <div class="brand">
+            <h1>MediCore</h1>
+            <p>Streamlined Hospital Management</p>
+        </div>
+        <div class="hero-buttons">
+            <a th:href="@{/login}" class="btn btn-primary">Login</a>
+            <a th:href="@{/register}" class="btn btn-outline">Register</a>
+        </div>
+    </header>
+
+    <!-- Features Section -->
+    <section class="features">
+        <h2>Our Features</h2>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <img src="/images/appointment.png" alt="Appointments" />
+                <h3>Appointment Booking</h3>
+                <p>Book and manage appointments with doctors efficiently.</p>
+            </div>
+            <div class="feature-card">
+                <img src="/images/patient-records.png" alt="Records" />
+                <h3>Patient Records</h3>
+                <p>Maintain patient history, prescriptions, and reports securely.</p>
+            </div>
+            <div class="feature-card">
+                <img src="/images/staff.png" alt="Staff" />
+                <h3>Staff Management</h3>
+                <p>Manage doctors, nurses, and admin staff with ease.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 MediCore. All rights reserved.</p>
+    </footer>
+</body>
+</html>

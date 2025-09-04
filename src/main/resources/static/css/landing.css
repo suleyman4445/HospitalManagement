@@ -1,0 +1,125 @@
+/* === Base Reset === */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f5f7fa;
+            color: #333;
+        }
+
+        /* === Navigation Bar === */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            background: linear-gradient(to right, #00c6ff, #0072ff);
+            color: white;
+            flex-wrap: wrap;
+        }
+
+        .navbar .brand h1 {
+            font-size: 2rem;
+        }
+
+        .navbar .brand p {
+            font-size: 0.9rem;
+            margin-top: 4px;
+            opacity: 0.8;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            transition: background 0.3s ease;
+        }
+
+        .btn-primary {
+            background-color: #fff;
+            color: #0072ff;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #e0e0e0;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: #fff;
+            border: 2px solid #fff;
+        }
+
+        .btn-outline:hover {
+            background: #fff;
+            color: #0072ff;
+        }
+
+        /* === Features Section === */
+        .features {
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .features h2 {
+            font-size: 2rem;
+            margin-bottom: 30px;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: #fff;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-card img {
+            max-width: 80px;
+            margin-bottom: 15px;
+        }
+
+        /* === Footer === */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #eaf0f5;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+
+            .hero-buttons {
+                margin-top: 10px;
+                flex-wrap: wrap;
+            }
+        }

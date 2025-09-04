@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="https://thymeleaf.org">
+	<head>
+		<meta charset="UTF-8"/>
+		<title>view-all-appointments</title>
+		<link rel="stylesheet" th:href="@{/css/doctor-appointments.css}" href="/static/css/doctor-appointments.css"/>
+		<link th:href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+		<script defer th:src="@{/js/doctor-appointments.js}" src="/static/js/doctor-appointments.js"></script>
+	</head>
+	
+	<body>
+		<!-- <div class="section">
+			<h3>Today's Appointments</h3>
+			<div th:href="${appointments != null and appointments.size() > 0}">
+				<div th:each="appt : ${appointments}" class="queue-item">
+					<p><strong>Patient:</strong><span th:text="${appt.patient.name}">10:00 AM</span></p>
+					<p><strong>Date:</strong><span th:text="${appt.appointmentDate}">01-01-2025</span></p>
+					<p><strong>Time:</strong><span th:text="${appt.appointmentTime}">10:00 AM></span></p>
+					<p><strong>Status:</strong><span th:text="${appt.status}">PENDING</span></p>
+				</div>
+			</div>
+			<p th:if="${appointments == null or appointments.isEmpty()}">No appointments scheduled for today</p>
+		</div> -->
+
+		<div class="title-section">
+			<h2 class="appointments-title">Your Appointments</h2>
+			
+			<select id="statusFilter" class="filter-dropdown">
+				<option value="ALL">All</option>
+				<option value="CONFIRMED">Confirmed</option>
+				<option value="COMPLETED">Completed</option>
+				<option value="CANCELLED">Cancelled</option>
+				<option value="PENDING">Pending</option>
+				<option value="MISSED">Missed</option>
+			</select>
+		</div>
+
+		<section th:if="${appointments != null and appointments.size() > 0}" class="panel">
+			<div th:each="appt : ${appointments}" class="queue-item">
+				<!-- Header Row -->
+				<div class="appointment-card">
+					<span class="patient-info">
+						<span><strong>Patient:</strong> <span th:text="${appt.patient.name != null ?
+							appt.patient.name : 'Unknown'}">Mr. Sharma</span></span>
+						<span><strong>Date:</strong> <span th:text="${appt.appointmentDate != null ? 
+							appt.appointmentDate : 'Unknown'}">2025-08-04</span></span>
+						<span><strong>Time:</strong> <span th:text="${appt.appointmentTime != null ? 
+							appt.appointmentTime : 'Unknown'}">10:30 AM</span></span>
+						<span><strong>Status:</strong> <span id="status" data-status="COMPLETED" th:attr="data-status=${appt.status != null ? appt.status : 'UNKNOWN'}" 
+							th:text="${appt.status != null ? appt.status : 'Unknown'}"
+							th:classappend="${appt.status == 'PENDING'} ? 'status-pending' :
+							(${appt.status == 'CONFIRMED'} ? 'status-confirmed' :
+							(${appt.status == 'COMPLETED'} ? 'status-completed' :
+							(${appt.status == 'CANCELLED'} ? 'status-cancelled' :
+							(${appt.status == 'MISSED'} ? 'status-missed' : 'status-unknown'))))">Confirmed</span></span>
+					</span>
+					<div class="actions"></div>
+					<!-- <span class="arrow">▼</span> -->
+				</div>
+			</div>
+		</section>
+	</body>
+</html>
